@@ -23,7 +23,8 @@ const feed = [
   { emoji: '🪶', title: 'Тренд', sub: 'Лёгкий объём без утяжеления' },
 ];
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/e1f7a3b2-1bc9-432b-aba3-b428ec087fb7.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/4160b5e2-f878-4afe-b68f-9b5f3ae83b39.jpg';
+const HERO_IMG2 = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/a8250006-d05d-4b91-b225-bb95d0dd543c.jpg';
 
 const Index = () => {
   useReveal();
@@ -113,10 +114,36 @@ const Index = () => {
               </a>
             </div>
           </div>
-          <div className="relative reveal" data-delay="0.2s">
-            <img src={HERO_IMG} alt="InValuable" className="rounded-[2.5rem] w-full object-cover aspect-[4/5] soft-shadow" />
-            <div className="absolute -bottom-5 -left-3 sm:left-6 glass soft-shadow rounded-2xl px-5 py-4 flex items-center gap-3 animate-float">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+          <div className="relative reveal" data-delay="0.15s">
+            {/* Main photo */}
+            <div className="relative">
+              <img
+                src={HERO_IMG}
+                alt="InValuable"
+                className="rounded-[2.5rem] w-full object-cover object-top aspect-[3/4] soft-shadow"
+              />
+              {/* Gradient overlay bottom */}
+              <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-t from-white/60 via-transparent to-transparent" />
+            </div>
+
+            {/* Second photo — floating card top-right */}
+            <div className="absolute -top-5 -right-4 sm:right-0 w-36 sm:w-44 animate-float" style={{ animationDelay: '1s' }}>
+              <img
+                src={HERO_IMG2}
+                alt="InValuable products"
+                className="rounded-[1.5rem] w-full object-cover aspect-square soft-shadow border-4 border-white"
+              />
+            </div>
+
+            {/* Stats badge */}
+            <div className="absolute top-8 -left-4 sm:-left-8 glass soft-shadow rounded-2xl px-4 py-3 animate-float" style={{ animationDelay: '0.5s' }}>
+              <p className="text-2xl font-display font-bold text-primary">98%</p>
+              <p className="text-xs text-muted-foreground whitespace-nowrap">довольных клиентов</p>
+            </div>
+
+            {/* AL badge */}
+            <div className="absolute -bottom-5 left-4 sm:left-8 glass soft-shadow rounded-2xl px-5 py-3.5 flex items-center gap-3 animate-float">
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
                 <Icon name="Sparkles" size={18} className="text-primary-foreground" />
               </div>
               <div>
