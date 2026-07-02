@@ -10,6 +10,7 @@ import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import { WishlistProvider } from "@/context/WishlistContext";
 import WishlistDrawer from "@/components/WishlistDrawer";
+import ALChat from "@/components/ALChat";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           </BrowserRouter>
           <CartDrawer />
           <WishlistDrawer />
+          <ALChat />
         </CartProvider>
       </WishlistProvider>
     </TooltipProvider>

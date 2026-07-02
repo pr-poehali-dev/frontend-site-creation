@@ -4,6 +4,7 @@ import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
 import ChampionSection from '@/components/ChampionSection';
 import CoopSection from '@/components/CoopSection';
+import DeliverySection from '@/components/DeliverySection';
 import { useReveal } from '@/components/useReveal';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
@@ -14,6 +15,7 @@ const nav = [
   { label: 'Каталог', href: '#catalog' },
   { label: 'Обучение', href: '#education' },
   { label: 'Чемпион', href: '#champion' },
+  { label: 'Доставка', href: '#delivery' },
   { label: 'О нас', href: '#about' },
   { label: 'Контакты', href: '#consult' },
 ];
@@ -282,6 +284,9 @@ const Index = () => {
 
       {/* COOP + DOCS + CONSULT */}
       <CoopSection />
+
+      {/* DELIVERY */}
+      <DeliverySection />
 
       {/* ABOUT */}
       <section id="about" className="py-20 sm:py-28 relative dots-bg">
