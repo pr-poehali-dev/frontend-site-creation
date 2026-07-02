@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
+import ChampionSection from '@/components/ChampionSection';
+import CoopSection from '@/components/CoopSection';
 import { useReveal } from '@/components/useReveal';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
@@ -11,8 +13,9 @@ const nav = [
   { label: 'Диагностика', href: '#diagnostic' },
   { label: 'Каталог', href: '#catalog' },
   { label: 'Обучение', href: '#education' },
+  { label: 'Чемпион', href: '#champion' },
   { label: 'О нас', href: '#about' },
-  { label: 'Контакты', href: '#contacts' },
+  { label: 'Контакты', href: '#consult' },
 ];
 
 const feed = [
@@ -274,6 +277,12 @@ const Index = () => {
       {/* EDUCATION */}
       <Education />
 
+      {/* CHAMPION */}
+      <ChampionSection />
+
+      {/* COOP + DOCS + CONSULT */}
+      <CoopSection />
+
       {/* ABOUT */}
       <section id="about" className="py-20 sm:py-28 relative dots-bg">
         <div className="container mx-auto px-5">
@@ -345,34 +354,94 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CONTACTS */}
-      <section id="contacts" className="py-20 sm:py-28 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary blob rounded-full" />
-        <div className="container mx-auto px-5 relative z-10 text-center max-w-2xl">
-          <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4 reveal">Остались вопросы?</h2>
-          <p className="text-muted-foreground text-lg mb-8 reveal" data-delay="0.1s">Запишитесь на консультацию офлайн или напишите нам в соцсетях.</p>
-          <div className="flex flex-wrap justify-center gap-3 reveal" data-delay="0.2s">
-            <a href="#diagnostic" className="bg-primary text-primary-foreground font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity soft-shadow">
-              Записаться на консультацию
-            </a>
-            {['Send', 'Instagram'].map((s) => (
-              <a key={s} href="#" className="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-accent transition-colors">
-                <Icon name={s} size={20} className="text-primary" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FOOTER */}
-      <footer className="border-t border-border py-10">
-        <div className="container mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <img
-            src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
-            alt="InValuable"
-            className="h-12 w-auto object-contain"
-          />
-          <p className="text-muted-foreground text-sm">© 2026 InValuable. Все права защищены.</p>
+      <footer className="border-t border-border bg-secondary/30 pt-12 pb-8">
+        <div className="container mx-auto px-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            {/* Brand */}
+            <div className="lg:col-span-1">
+              <img
+                src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
+                alt="InValuable"
+                className="h-14 w-auto object-contain mb-4"
+              />
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Премиальный косметический бренд. Профессиональный уход для волос, кожи и красоты.
+              </p>
+              <div className="flex gap-3 mt-4">
+                {[
+                  { icon: 'Send', label: 'Telegram' },
+                  { icon: 'Instagram', label: 'Instagram' },
+                  { icon: 'Youtube', label: 'YouTube' },
+                ].map((s) => (
+                  <a key={s.icon} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-primary/20 transition-colors" title={s.label}>
+                    <Icon name={s.icon} size={17} className="text-primary" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            {/* Navigation */}
+            <div>
+              <p className="font-semibold mb-4 text-sm">Навигация</p>
+              <ul className="space-y-2">
+                {[
+                  { label: 'Диагностика', href: '#diagnostic' },
+                  { label: 'Каталог', href: '#catalog' },
+                  { label: 'Подбор подарка', href: '#gift' },
+                  { label: 'Обучение', href: '#education' },
+                  { label: 'Стать чемпионом', href: '#champion' },
+                ].map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="text-muted-foreground text-sm hover:text-primary transition-colors">{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Specialists */}
+            <div>
+              <p className="font-semibold mb-4 text-sm">Специалистам</p>
+              <ul className="space-y-2">
+                {[
+                  { label: 'Колористы', href: '#education' },
+                  { label: 'Трихологи', href: '#education' },
+                  { label: 'Бровисты', href: '#education' },
+                  { label: 'Косметологи', href: '#education' },
+                  { label: 'Сотрудничество', href: '#cooperation' },
+                  { label: 'Документация', href: '#docs' },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="text-muted-foreground text-sm hover:text-primary transition-colors">{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Contacts */}
+            <div>
+              <p className="font-semibold mb-4 text-sm">Контакты</p>
+              <ul className="space-y-3">
+                {[
+                  { icon: 'Phone', text: '+7 (999) 123-45-67' },
+                  { icon: 'Mail', text: 'hello@invaluable.ru' },
+                  { icon: 'MapPin', text: 'Москва, ул. Космонавтов, 42' },
+                ].map(({ icon, text }) => (
+                  <li key={text} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <Icon name={icon} size={15} className="text-primary mt-0.5 shrink-0" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
+              <a href="#consult" className="mt-5 inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity">
+                <Icon name="Calendar" size={15} /> Записаться
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+            <span>© 2026 InValuable. Все права защищены.</span>
+            <div className="flex gap-4">
+              <a href="#docs" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
+              <a href="#docs" className="hover:text-primary transition-colors">Договор оферты</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
