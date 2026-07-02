@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import Diagnostic from '@/components/Diagnostic';
+import Education from '@/components/Education';
 import { useReveal } from '@/components/useReveal';
 import { useCart } from '@/context/CartContext';
 import { products } from '@/data/products';
@@ -8,6 +9,7 @@ import { products } from '@/data/products';
 const nav = [
   { label: 'Диагностика', href: '#diagnostic' },
   { label: 'Каталог', href: '#catalog' },
+  { label: 'Обучение', href: '#education' },
   { label: 'О нас', href: '#about' },
   { label: 'Контакты', href: '#contacts' },
 ];
@@ -159,22 +161,77 @@ const Index = () => {
         </div>
       </section>
 
+      {/* EDUCATION */}
+      <Education />
+
       {/* ABOUT */}
       <section id="about" className="py-20 sm:py-28 relative dots-bg">
-        <div className="container mx-auto px-5 grid lg:grid-cols-3 gap-6">
-          {[
-            { icon: 'ShieldCheck', title: 'Безопасность', desc: 'Составы без агрессивных компонентов, проверенные экспертами.' },
-            { icon: 'Sparkles', title: 'AL-технологии', desc: 'Умный подбор ухода на основе вашей диагностики.' },
-            { icon: 'HeartHandshake', title: 'Доверие', desc: 'Спокойный и заботливый подход к каждому клиенту.' },
-          ].map((c, i) => (
-            <div key={c.title} className="reveal glass soft-shadow rounded-3xl p-8" data-delay={`${i * 0.1}s`}>
-              <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-5">
-                <Icon name={c.icon} size={26} className="text-primary-foreground" />
+        <div className="container mx-auto px-5">
+          <div className="text-center max-w-2xl mx-auto mb-14 reveal">
+            <p className="text-primary font-semibold mb-3 tracking-wide">О НАС</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4">Команда InValuable</h2>
+            <p className="text-muted-foreground text-lg">Эксперты, которым доверяют тысячи профессионалов</p>
+          </div>
+
+          {/* Values */}
+          <div className="grid lg:grid-cols-3 gap-6 mb-16">
+            {[
+              { icon: 'ShieldCheck', title: 'Безопасность', desc: 'Составы без агрессивных компонентов, проверенные дерматологами.' },
+              { icon: 'Sparkles', title: 'AL-технологии', desc: 'Умный подбор ухода на основе персональной диагностики.' },
+              { icon: 'HeartHandshake', title: 'Доверие', desc: 'Спокойный и заботливый подход к каждому клиенту и партнёру.' },
+            ].map((c, i) => (
+              <div key={c.title} className="reveal glass soft-shadow rounded-3xl p-8" data-delay={`${i * 0.1}s`}>
+                <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-5">
+                  <Icon name={c.icon} size={26} className="text-primary-foreground" />
+                </div>
+                <h3 className="text-2xl font-display font-semibold mb-2">{c.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{c.desc}</p>
               </div>
-              <h3 className="text-2xl font-display font-semibold mb-2">{c.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{c.desc}</p>
+            ))}
+          </div>
+
+          {/* Trainers */}
+          <div className="mb-14">
+            <h3 className="text-2xl font-display font-semibold text-center mb-8 reveal">Наши тренеры</h3>
+            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {[
+                { name: 'Анна Светлова', role: 'Эксперт-колорист', exp: '14 лет', emoji: '💇‍♀️', bio: 'Тренер по колористике, ботоксу и химии волос. Победитель профессиональных конкурсов.' },
+                { name: 'Мария Ковалёва', role: 'Трихолог, к.м.н.', exp: '10 лет', emoji: '🔬', bio: 'Кандидат медицинских наук. Автор курсов по трихологии и уходу за кожей головы.' },
+              ].map((t, i) => (
+                <div key={t.name} className="reveal glass soft-shadow rounded-3xl p-6 flex gap-5" data-delay={`${i * 0.1}s`}>
+                  <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center text-3xl shrink-0">
+                    {t.emoji}
+                  </div>
+                  <div>
+                    <p className="font-display font-semibold text-xl">{t.name}</p>
+                    <p className="text-primary text-sm font-medium">{t.role} · {t.exp}</p>
+                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{t.bio}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Events */}
+          <div className="reveal">
+            <h3 className="text-2xl font-display font-semibold text-center mb-8">Ближайшие события</h3>
+            <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+              {[
+                { date: '15 июля', title: 'Мастер-класс по балаяжу', place: 'Москва', emoji: '✂️' },
+                { date: '22 июля', title: 'Вебинар по трихологии', place: 'Онлайн', emoji: '💻' },
+                { date: '5 августа', title: 'День открытых дверей', place: 'Санкт-Петербург', emoji: '🌸' },
+              ].map((ev, i) => (
+                <div key={ev.title} className="reveal bg-background border border-border rounded-2xl p-5 hover:-translate-y-1 transition-transform" data-delay={`${i * 0.08}s`}>
+                  <div className="text-3xl mb-3">{ev.emoji}</div>
+                  <p className="text-primary font-semibold text-sm mb-1">{ev.date}</p>
+                  <p className="font-semibold leading-snug mb-2">{ev.title}</p>
+                  <p className="text-muted-foreground text-sm flex items-center gap-1">
+                    <Icon name="MapPin" size={13} />{ev.place}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
