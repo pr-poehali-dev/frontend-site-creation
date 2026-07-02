@@ -4,6 +4,7 @@ import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
 import { useReveal } from '@/components/useReveal';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 import { products } from '@/data/products';
 
 const nav = [
@@ -27,15 +28,24 @@ const HERO_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b
 const Index = () => {
   useReveal();
   const { add, count, setOpen } = useCart();
+  const { isWished, toggleItem, activeListId, setOpen: setWishOpen, lists } = useWishlist();
+  const activeList = lists.find((l) => l.id === activeListId) ?? lists[0];
+  const totalWished = lists.reduce((s, l) => s + l.items.length, 0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [catalogFilter, setCatalogFilter] = useState<'all' | 'hair' | 'scalp' | 'universal'>('all');
+  const [giftTag, setGiftTag] = useState('');
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
       <header className="fixed top-3 inset-x-3 sm:inset-x-6 z-50 glass soft-shadow rounded-full">
         <div className="px-5 sm:px-7 h-14 flex items-center justify-between">
-          <a href="#" className="font-display font-semibold text-xl tracking-tight">
-            InValuable
+          <a href="#" className="flex items-center">
+            <img
+              src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
+              alt="InValuable"
+              className="h-10 w-auto object-contain"
+            />
           </a>
           <nav className="hidden md:flex items-center gap-7">
             {nav.map((n) => (
@@ -45,6 +55,14 @@ const Index = () => {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <button onClick={() => setWishOpen(true)} className="relative w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors">
+              <Icon name="Heart" size={18} className={totalWished > 0 ? 'text-primary' : ''} />
+              {totalWished > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalWished}
+                </span>
+              )}
+            </button>
             <button onClick={() => setOpen(true)} className="relative w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors">
               <Icon name="ShoppingBag" size={18} />
               {count > 0 && (
@@ -131,20 +149,44 @@ const Index = () => {
       {/* CATALOG */}
       <section id="catalog" className="py-20 sm:py-28 relative">
         <div className="container mx-auto px-5">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal">
             <div>
               <p className="text-primary font-semibold mb-3 tracking-wide">КАТАЛОГ</p>
-              <h2 className="text-4xl sm:text-5xl font-display font-semibold">Популярные продукты</h2>
+              <h2 className="text-4xl sm:text-5xl font-display font-semibold">Все продукты</h2>
             </div>
-            <p className="text-muted-foreground">Можно добавить любой продукт вручную</p>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {products.map((p, i) => (
-              <div key={p.id} className="reveal bg-secondary/50 rounded-[1.75rem] p-5 group hover:-translate-y-1 transition-transform soft-shadow" data-delay={`${(i % 3) * 0.08}s`}>
+
+          {/* Filters */}
+          <div className="flex flex-wrap gap-2 mb-8 reveal">
+            {[
+              { key: 'all', label: 'Все', emoji: '✨' },
+              { key: 'hair', label: 'Для волос', emoji: '💇‍♀️' },
+              { key: 'scalp', label: 'Кожа головы', emoji: '🧖‍♀️' },
+              { key: 'universal', label: 'Универсальные', emoji: '🌸' },
+            ].map(({ key, label, emoji }) => (
+              <button
+                key={key}
+                onClick={() => setCatalogFilter(key as 'all' | 'hair' | 'scalp' | 'universal')}
+                className={`flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${catalogFilter === key ? 'bg-primary text-primary-foreground' : 'bg-secondary hover:bg-accent'}`}
+              >
+                <span>{emoji}</span>{label}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16">
+            {products.filter(p => catalogFilter === 'all' || p.category === catalogFilter).map((p, i) => (
+              <div key={p.id} className="reveal bg-secondary/50 rounded-[1.75rem] p-5 group hover:-translate-y-1 transition-transform soft-shadow relative" data-delay={`${(i % 3) * 0.08}s`}>
+                <button
+                  onClick={() => activeList && toggleItem(activeList.id, p)}
+                  className={`absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isWished(p.id) ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground hover:text-primary'}`}
+                >
+                  <Icon name="Heart" size={15} />
+                </button>
                 <div className="aspect-square rounded-2xl bg-background flex items-center justify-center text-5xl mb-4 group-hover:scale-105 transition-transform">
                   {p.emoji}
                 </div>
-                <h3 className="font-semibold leading-snug">{p.name}</h3>
+                <h3 className="font-semibold leading-snug pr-8">{p.name}</h3>
                 <p className="text-muted-foreground text-xs mt-1 line-clamp-2">{p.desc}</p>
                 <div className="flex items-center justify-between mt-4">
                   <span className="font-display font-semibold text-xl">{p.price.toLocaleString()} ₽</span>
@@ -157,6 +199,47 @@ const Index = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Gift finder */}
+          <div id="gift" className="reveal bg-gradient-to-br from-primary/8 via-accent to-secondary rounded-[2rem] p-8 sm:p-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="text-5xl">🎁</div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-display font-semibold mb-1">Подбор подарка</h3>
+                <p className="text-muted-foreground mb-4">Ответьте на 2 вопроса — и AL подберёт идеальный подарок</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['Для мамы', 'Для подруги', 'Для себя', 'Универсально'].map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setGiftTag(giftTag === tag ? '' : tag)}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${giftTag === tag ? 'bg-primary text-primary-foreground' : 'glass hover:bg-white/80'}`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+                {giftTag && (
+                  <div className="animate-fade-up space-y-3">
+                    <p className="text-sm font-semibold text-primary">Рекомендации AL для «{giftTag}»:</p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      {products.slice(0, 3).map((p) => (
+                        <div key={p.id} className="flex items-center gap-3 bg-background rounded-2xl p-3 flex-1">
+                          <span className="text-2xl">{p.emoji}</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold truncate">{p.name}</p>
+                            <p className="text-primary text-sm font-semibold">{p.price.toLocaleString()} ₽</p>
+                          </div>
+                          <button onClick={() => add(p)} className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90">
+                            <Icon name="Plus" size={14} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -257,7 +340,11 @@ const Index = () => {
       {/* FOOTER */}
       <footer className="border-t border-border py-10">
         <div className="container mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="font-display font-semibold text-xl">InValuable</span>
+          <img
+            src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
+            alt="InValuable"
+            className="h-12 w-auto object-contain"
+          />
           <p className="text-muted-foreground text-sm">© 2026 InValuable. Все права защищены.</p>
         </div>
       </footer>
