@@ -21,10 +21,10 @@ const WishlistDrawer = () => {
 
   const shareList = () => {
     const text = activeList
-      ? `Мой список "${activeList.name}" в InValuable:\n` + activeList.items.map((i) => `• ${i.name} — ${i.price.toLocaleString()} ₽`).join('\n')
+      ? `Мой список "${activeList.name}" в HairMasterHub:\n` + activeList.items.map((i) => `• ${i.name} — ${i.price.toLocaleString()} ₽`).join('\n')
       : '';
     if (navigator.share) {
-      navigator.share({ title: 'InValuable Wishlist', text });
+      navigator.share({ title: 'HairMasterHub Wishlist', text });
     } else {
       navigator.clipboard.writeText(text);
       alert('Список скопирован в буфер обмена!');

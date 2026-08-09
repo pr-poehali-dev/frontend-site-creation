@@ -5,32 +5,35 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 340 15% 15%;
+    --foreground: 265 20% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 340 15% 15%;
+    --card-foreground: 265 20% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 340 15% 15%;
+    --popover-foreground: 265 20% 14%;
 
-    --primary: 335 78% 58%;
+    --primary: 271 45% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 330 30% 97%;
-    --secondary-foreground: 340 15% 20%;
+    --secondary: 270 25% 97%;
+    --secondary-foreground: 265 20% 20%;
 
-    --muted: 340 20% 96%;
-    --muted-foreground: 340 8% 46%;
+    --muted: 270 15% 96%;
+    --muted-foreground: 265 8% 46%;
 
-    --accent: 335 80% 96%;
-    --accent-foreground: 335 78% 45%;
+    --accent: 271 50% 95%;
+    --accent-foreground: 271 45% 32%;
+
+    --gold: 42 65% 52%;
+    --gold-foreground: 265 20% 14%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 340 20% 92%;
-    --input: 340 20% 92%;
-    --ring: 335 78% 58%;
+    --border: 270 20% 91%;
+    --input: 270 20% 91%;
+    --ring: 271 45% 38%;
 
     --radius: 1.25rem;
 
@@ -114,12 +117,12 @@
 
 @layer utilities {
   .font-display {
-    font-family: "Cormorant", serif;
+    font-family: "Playfair Display", serif;
     letter-spacing: -0.01em;
   }
 
   .gradient-text {
-    background: linear-gradient(110deg, #e0568f, #f090b8, #d63384);
+    background: linear-gradient(110deg, #6b3fa0, #a8791f, #7a3f9e);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -127,20 +130,24 @@
     @apply animate-gradient-move;
   }
 
+  .gold-text {
+    color: hsl(var(--gold));
+  }
+
   .glass {
     background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid rgba(214, 51, 132, 0.1);
+    border: 1px solid rgba(107, 63, 160, 0.12);
   }
 
   .soft-shadow {
-    box-shadow: 0 10px 40px -12px rgba(214, 51, 132, 0.18);
+    box-shadow: 0 10px 40px -12px rgba(107, 63, 160, 0.2);
   }
 
   .dots-bg {
     background-image: radial-gradient(
-      rgba(214, 51, 132, 0.1) 1.2px,
+      rgba(107, 63, 160, 0.1) 1.2px,
       transparent 1.2px
     );
     background-size: 22px 22px;

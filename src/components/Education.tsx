@@ -31,10 +31,10 @@ const Education = () => {
         <div className="text-center max-w-2xl mx-auto mb-12 reveal">
           <p className="text-primary font-semibold mb-3 tracking-wide">ОБУЧЕНИЕ</p>
           <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4">
-            Профессиональная библиотека
+            Онлайн-курсы для мастеров
           </h2>
           <p className="text-muted-foreground text-lg">
-            Курсы для специалистов: колористы, трихологи, бровисты и косметологи
+            Учебные модули от практиков с сертификацией: колористы, трихологи, бровисты и косметологи
           </p>
         </div>
 
@@ -124,7 +124,7 @@ const Education = () => {
           <p className="text-4xl mb-4">🎓</p>
           <h3 className="text-3xl font-display font-semibold mb-3">Стать сертифицированным партнёром</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Зарегистрируйтесь как специалист — получите доступ к закрытым материалам и программе чемпионов InValuable
+            Зарегистрируйтесь как специалист — получите доступ к закрытым материалам и программе чемпионов HairMasterHub
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             {(Object.entries(categoryLabels) as [string, string][]).map(([key, label]) => (

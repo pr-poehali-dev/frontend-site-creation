@@ -29,7 +29,7 @@ const DeliverySection = () => (
           { icon: '🚚', title: 'Курьер', desc: 'Доставка до двери в удобное время', badge: 'Быстро' },
           { icon: '📦', title: 'СДЭК', desc: 'Более 3000 пунктов выдачи по России', badge: 'Популярно' },
           { icon: '📮', title: 'Почта России', desc: 'Доставка в любую точку страны', badge: 'Везде' },
-          { icon: '🏪', title: 'Самовывоз', desc: 'Москва, ул. Космонавтов, 42', badge: 'Бесплатно' },
+          { icon: '🏪', title: 'Самовывоз', desc: 'Москва, ул. Мастеров, 12', badge: 'Бесплатно' },
         ].map((m, i) => (
           <div key={m.title} className="reveal glass soft-shadow rounded-2xl p-5 hover:-translate-y-1 transition-transform" data-delay={`${i * 0.07}s`}>
             <div className="text-3xl mb-3">{m.icon}</div>

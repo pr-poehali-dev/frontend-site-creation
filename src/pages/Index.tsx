@@ -10,10 +10,12 @@ import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { products } from '@/data/products';
 
+const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/bda9d1c0-809d-4fdc-a42f-edc41be5225c.png';
+
 const nav = [
-  { label: 'Диагностика', href: '#diagnostic' },
-  { label: 'Каталог', href: '#catalog' },
   { label: 'Обучение', href: '#education' },
+  { label: 'Клуб', href: '#club' },
+  { label: 'Магазин', href: '#catalog' },
   { label: 'Чемпион', href: '#champion' },
   { label: 'Доставка', href: '#delivery' },
   { label: 'О нас', href: '#about' },
@@ -21,11 +23,11 @@ const nav = [
 ];
 
 const feed = [
-  { emoji: '🌸', title: 'Новинка сезона', sub: 'Успокаивающий крем-гель' },
-  { emoji: '💧', title: 'Хит продаж', sub: 'Восстанавливающая сыворотка' },
-  { emoji: '✨', title: 'Совет дня', sub: 'Как вернуть блеск волосам' },
-  { emoji: '🌿', title: 'AL рекомендует', sub: 'Уход для чувствительной кожи' },
-  { emoji: '🪶', title: 'Тренд', sub: 'Лёгкий объём без утяжеления' },
+  { emoji: '🎓', title: 'Новый курс', sub: 'Продвинутая колористика' },
+  { emoji: '🔥', title: 'Хит продаж', sub: 'Восстанавливающая сыворотка PRO' },
+  { emoji: '💬', title: 'Клуб', sub: 'LIVE-разбор техник окрашивания' },
+  { emoji: '🏆', title: 'Чемпионы', sub: 'Новый поток программы роста' },
+  { emoji: '🧴', title: 'Магазин', sub: 'Скидка 15% для членов клуба' },
 ];
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/4160b5e2-f878-4afe-b68f-9b5f3ae83b39.jpg';
@@ -46,12 +48,13 @@ const Index = () => {
       {/* NAV */}
       <header className="fixed top-3 inset-x-3 sm:inset-x-6 z-50 glass soft-shadow rounded-full">
         <div className="px-5 sm:px-7 h-14 flex items-center justify-between">
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center gap-2">
             <img
-              src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
-              alt="InValuable"
-              className="h-10 w-auto object-contain"
+              src={LOGO}
+              alt="HairMasterHub"
+              className="h-10 w-auto object-contain rounded-full"
             />
+            <span className="hidden sm:block font-display font-semibold text-lg tracking-tight">HairMasterHub</span>
           </a>
           <nav className="hidden md:flex items-center gap-7">
             {nav.map((n) => (
@@ -101,21 +104,21 @@ const Index = () => {
           <div>
             <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6 reveal">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm text-muted-foreground">Косметический бренд премиум-класса</span>
+              <span className="text-sm text-muted-foreground">Платформа для профессионалов волос</span>
             </div>
             <h1 className="text-5xl sm:text-7xl font-display font-semibold leading-[1.02] mb-6 reveal" data-delay="0.1s">
-              Уход, подобранный <span className="gradient-text">лично для вас</span>
+              Обучение, клуб и <span className="gradient-text">магазин в одном окне</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg mb-8 reveal" data-delay="0.2s">
-              Пройдите умную диагностику кожи и волос — и получите персональные рекомендации от AL-помощника за одну минуту.
+              Развивайте мастерство, общайтесь с профессионалами и закупайте только сертифицированную косметику для салона — всё на одной платформе.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 reveal" data-delay="0.3s">
-              <a href="#diagnostic" className="group bg-primary text-primary-foreground font-semibold px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 transition-opacity soft-shadow">
-                Начать диагностику
+              <a href="#education" className="group bg-primary text-primary-foreground font-semibold px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 transition-opacity soft-shadow">
+                Начать обучение
                 <Icon name="ArrowRight" size={20} className="group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#catalog" className="glass hover:bg-accent transition-colors font-semibold px-8 py-4 rounded-full flex items-center justify-center">
-                Каталог
+              <a href="#club" className="glass hover:bg-accent transition-colors font-semibold px-8 py-4 rounded-full flex items-center justify-center">
+                Присоединиться к клубу
               </a>
             </div>
           </div>
@@ -124,7 +127,7 @@ const Index = () => {
             <div className="relative">
               <img
                 src={HERO_IMG}
-                alt="InValuable"
+                alt="HairMasterHub"
                 className="rounded-[2.5rem] w-full object-cover object-top aspect-[3/4] soft-shadow"
               />
               {/* Gradient overlay bottom */}
@@ -135,25 +138,25 @@ const Index = () => {
             <div className="absolute -top-5 -right-4 sm:right-0 w-36 sm:w-44 animate-float" style={{ animationDelay: '1s' }}>
               <img
                 src={HERO_IMG2}
-                alt="InValuable products"
+                alt="HairMasterHub — продукция и обучение"
                 className="rounded-[1.5rem] w-full object-cover aspect-square soft-shadow border-4 border-white"
               />
             </div>
 
             {/* Stats badge */}
             <div className="absolute top-8 -left-4 sm:-left-8 glass soft-shadow rounded-2xl px-4 py-3 animate-float" style={{ animationDelay: '0.5s' }}>
-              <p className="text-2xl font-display font-bold text-primary">98%</p>
-              <p className="text-xs text-muted-foreground whitespace-nowrap">довольных клиентов</p>
+              <p className="text-2xl font-display font-bold text-primary">2400+</p>
+              <p className="text-xs text-muted-foreground whitespace-nowrap">мастеров в клубе</p>
             </div>
 
-            {/* AL badge */}
+            {/* Trust badge */}
             <div className="absolute -bottom-5 left-4 sm:left-8 glass soft-shadow rounded-2xl px-5 py-3.5 flex items-center gap-3 animate-float">
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
-                <Icon name="Sparkles" size={18} className="text-primary-foreground" />
+                <Icon name="GraduationCap" size={18} className="text-primary-foreground" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">AL-помощник</p>
-                <p className="text-sm font-semibold">Подбор за 1 минуту</p>
+                <p className="text-xs text-muted-foreground">Сертификаты</p>
+                <p className="text-sm font-semibold">Международного образца</p>
               </div>
             </div>
           </div>
@@ -178,14 +181,15 @@ const Index = () => {
       {/* DIAGNOSTIC */}
       <Diagnostic />
 
-      {/* CATALOG */}
+      {/* CATALOG / SHOP */}
       <section id="catalog" className="py-20 sm:py-28 relative">
         <div className="container mx-auto px-5">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal">
             <div>
-              <p className="text-primary font-semibold mb-3 tracking-wide">КАТАЛОГ</p>
-              <h2 className="text-4xl sm:text-5xl font-display font-semibold">Все продукты</h2>
+              <p className="text-primary font-semibold mb-3 tracking-wide">МАГАЗИН</p>
+              <h2 className="text-4xl sm:text-5xl font-display font-semibold">Профессиональная косметика</h2>
             </div>
+            <p className="text-muted-foreground">Только сертифицированные продукты для салона</p>
           </div>
 
           {/* Filters */}
@@ -293,16 +297,16 @@ const Index = () => {
         <div className="container mx-auto px-5">
           <div className="text-center max-w-2xl mx-auto mb-14 reveal">
             <p className="text-primary font-semibold mb-3 tracking-wide">О НАС</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4">Команда InValuable</h2>
-            <p className="text-muted-foreground text-lg">Эксперты, которым доверяют тысячи профессионалов</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4">Команда HairMasterHub</h2>
+            <p className="text-muted-foreground text-lg">Эксперты, которым доверяют тысячи мастеров</p>
           </div>
 
           {/* Values */}
           <div className="grid lg:grid-cols-3 gap-6 mb-16">
             {[
-              { icon: 'ShieldCheck', title: 'Безопасность', desc: 'Составы без агрессивных компонентов, проверенные дерматологами.' },
-              { icon: 'Sparkles', title: 'AL-технологии', desc: 'Умный подбор ухода на основе персональной диагностики.' },
-              { icon: 'HeartHandshake', title: 'Доверие', desc: 'Спокойный и заботливый подход к каждому клиенту и партнёру.' },
+              { icon: 'ShieldCheck', title: 'Надёжность', desc: 'Только сертифицированная профессиональная косметика с прозрачным составом.' },
+              { icon: 'Users', title: 'Сообщество', desc: 'Закрытый клуб экспертов, живое общение и обмен опытом.' },
+              { icon: 'GraduationCap', title: 'Развитие', desc: 'Гибкие форматы обучения — от вводных модулей до продвинутых курсов.' },
             ].map((c, i) => (
               <div key={c.title} className="reveal glass soft-shadow rounded-3xl p-8" data-delay={`${i * 0.1}s`}>
                 <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-5">
@@ -366,12 +370,12 @@ const Index = () => {
             {/* Brand */}
             <div className="lg:col-span-1">
               <img
-                src="https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg"
-                alt="InValuable"
-                className="h-14 w-auto object-contain mb-4"
+                src={LOGO}
+                alt="HairMasterHub"
+                className="h-14 w-auto object-contain rounded-full mb-4"
               />
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Премиальный косметический бренд. Профессиональный уход для волос, кожи и красоты.
+                Единая платформа для профессионального роста и закупок мастеров волос.
               </p>
               <div className="flex gap-3 mt-4">
                 {[
@@ -390,10 +394,10 @@ const Index = () => {
               <p className="font-semibold mb-4 text-sm">Навигация</p>
               <ul className="space-y-2">
                 {[
-                  { label: 'Диагностика', href: '#diagnostic' },
-                  { label: 'Каталог', href: '#catalog' },
-                  { label: 'Подбор подарка', href: '#gift' },
                   { label: 'Обучение', href: '#education' },
+                  { label: 'Клуб', href: '#club' },
+                  { label: 'Магазин', href: '#catalog' },
+                  { label: 'Подбор ухода', href: '#diagnostic' },
                   { label: 'Стать чемпионом', href: '#champion' },
                 ].map((l) => (
                   <li key={l.href}>
@@ -426,8 +430,8 @@ const Index = () => {
               <ul className="space-y-3">
                 {[
                   { icon: 'Phone', text: '+7 (999) 123-45-67' },
-                  { icon: 'Mail', text: 'hello@invaluable.ru' },
-                  { icon: 'MapPin', text: 'Москва, ул. Космонавтов, 42' },
+                  { icon: 'Mail', text: 'hello@hairmasterhub.ru' },
+                  { icon: 'MapPin', text: 'Москва, ул. Мастеров, 12' },
                 ].map(({ icon, text }) => (
                   <li key={text} className="flex items-start gap-2.5 text-sm text-muted-foreground">
                     <Icon name={icon} size={15} className="text-primary mt-0.5 shrink-0" />
@@ -441,7 +445,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-            <span>© 2026 InValuable. Все права защищены.</span>
+            <span>© 2026 HairMasterHub. Все права защищены.</span>
             <div className="flex gap-4">
               <a href="#docs" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
               <a href="#docs" className="hover:text-primary transition-colors">Договор оферты</a>

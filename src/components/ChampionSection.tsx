@@ -5,14 +5,14 @@ const CHAMPION_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6
 
 const steps = [
   { num: '01', title: 'Регистрация', desc: 'Зарегистрируйтесь как специалист и пройдите верификацию диплома.', icon: 'UserCheck' },
-  { num: '02', title: 'Обучение', desc: 'Пройдите сертифицированные курсы InValuable по вашей специализации.', icon: 'BookOpen' },
+  { num: '02', title: 'Обучение', desc: 'Пройдите сертифицированные курсы HairMasterHub по вашей специализации.', icon: 'BookOpen' },
   { num: '03', title: 'Практика', desc: 'Применяйте знания, участвуйте в мастер-классах и набирайте баллы.', icon: 'Star' },
-  { num: '04', title: 'Чемпион', desc: 'Получите статус Champion InValuable и эксклюзивные привилегии.', icon: 'Trophy' },
+  { num: '04', title: 'Чемпион', desc: 'Получите статус Champion HairMasterHub и эксклюзивные привилегии.', icon: 'Trophy' },
 ];
 
 const perks = [
   { icon: '🎓', title: 'Сертификат чемпиона', desc: 'Официальный документ международного образца' },
-  { icon: '💎', title: 'Скидка 30%', desc: 'На всю продукцию InValuable навсегда' },
+  { icon: '💎', title: 'Скидка 30%', desc: 'На всю продукцию HairMasterHub навсегда' },
   { icon: '📢', title: 'Амбассадорство', desc: 'Участие в рекламных кампаниях бренда' },
   { icon: '🤝', title: 'Партнёрская сеть', desc: 'Доступ к закрытому сообществу чемпионов' },
   { icon: '📅', title: 'Закрытые мероприятия', desc: 'VIP-приглашения на запуски продуктов' },
@@ -50,7 +50,7 @@ const ChampionSection = () => {
             <Icon name="Trophy" size={16} /> Программа развития
           </div>
           <h2 className="text-4xl sm:text-5xl font-display font-semibold mb-4">
-            Стать <span className="gradient-text">Чемпионом</span> InValuable
+            Стать <span className="gradient-text">Чемпионом</span> HairMasterHub
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Профессиональная программа для лучших специалистов. Развивайтесь, зарабатывайте и становитесь лицом бренда.
@@ -62,7 +62,7 @@ const ChampionSection = () => {
           <div className="reveal">
             <img
               src={CHAMPION_IMG}
-              alt="Чемпион InValuable"
+              alt="Чемпион HairMasterHub"
               className="rounded-[2.5rem] w-full object-cover aspect-[4/5] soft-shadow"
             />
           </div>

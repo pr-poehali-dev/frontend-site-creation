@@ -19,7 +19,7 @@ const getDays = () => {
 const docs = [
   { icon: '📄', title: 'Политика конфиденциальности', desc: 'Обработка и хранение персональных данных' },
   { icon: '📋', title: 'Договор оферты', desc: 'Условия оказания услуг и продажи продукции' },
-  { icon: '🔬', title: 'Сертификаты качества', desc: 'Международные сертификаты продукции InValuable' },
+  { icon: '🔬', title: 'Сертификаты качества', desc: 'Международные сертификаты продукции HairMasterHub' },
   { icon: '📜', title: 'Партнёрское соглашение', desc: 'Условия партнёрства и программы чемпионов' },
 ];
 
@@ -37,7 +37,6 @@ const CoopSection = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [consultForm, setConsultForm] = useState({ name: '', phone: '', email: '', personal: false, news: false });
   const [consultErrors, setConsultErrors] = useState<Record<string, string>>({});
-  const [consultDone, setConsultDone] = useState(false);
 
   const days = getDays();
   const field = 'w-full bg-secondary/60 border border-border rounded-2xl px-4 py-3.5 outline-none focus:border-primary transition-colors text-sm';
@@ -84,7 +83,7 @@ const CoopSection = () => {
                 Стать партнёром бренда
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Присоединяйтесь к сети партнёров InValuable. Мы ищем салоны, дистрибьюторов и профессионалов, которые хотят расти вместе с нами.
+                Присоединяйтесь к сети партнёров HairMasterHub. Мы ищем салоны, дистрибьюторов и профессионалов, которые хотят расти вместе с нами.
               </p>
               <div className="space-y-4">
                 {[
@@ -201,14 +200,14 @@ const CoopSection = () => {
                 Запись на офлайн‑консультацию
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Персональная встреча со специалистом InValuable. Разберём ваш запрос, подберём продукты и составим план ухода.
+                Персональная встреча со специалистом HairMasterHub. Разберём ваш запрос, подберём продукты и составим план ухода.
               </p>
               <div className="space-y-4">
                 {[
                   { icon: 'Clock', text: 'Длительность — 60 минут' },
-                  { icon: 'MapPin', text: 'Москва, ул. Космонавтов, 42' },
+                  { icon: 'MapPin', text: 'Москва, ул. Мастеров, 12' },
                   { icon: 'Sparkles', text: 'Персональный разбор и подбор продуктов' },
-                  { icon: 'Gift', text: 'Мини-набор InValuable в подарок' },
+                  { icon: 'Gift', text: 'Мини-набор HairMasterHub в подарок' },
                 ].map(({ icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
                     <span className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center shrink-0">
@@ -332,15 +331,5 @@ const CoopSection = () => {
     </>
   );
 };
-
-// Inline checkbox helper used inside CoopSection
-const Checkbox = ({ checked, onChange, label }: { checked: boolean; onChange: () => void; label: string }) => (
-  <label className="flex items-start gap-3 cursor-pointer" onClick={onChange}>
-    <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${checked ? 'bg-primary border-primary' : 'border-border'}`}>
-      {checked && <Icon name="Check" size={12} className="text-primary-foreground" />}
-    </div>
-    <span className="text-sm text-muted-foreground">{label}</span>
-  </label>
-);
 
 export default CoopSection;

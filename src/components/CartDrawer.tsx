@@ -6,13 +6,13 @@ type Step = 'cart' | 'delivery' | 'payment' | 'done';
 
 const DELIVERY_OPTIONS = [
   { id: 'courier', label: 'Курьер до двери', desc: '1–2 дня', price: 390, icon: '🚚' },
-  { id: 'pickup', label: 'Самовывоз', desc: 'Москва, Космонавтов 42', price: 0, icon: '🏪' },
+  { id: 'pickup', label: 'Самовывоз', desc: 'Москва, Мастеров 12', price: 0, icon: '🏪' },
   { id: 'post', label: 'Почта России', desc: '3–7 дней', price: 250, icon: '📮' },
   { id: 'cdek', label: 'СДЭК', desc: '2–4 дня', price: 320, icon: '📦' },
 ];
 
 const PROMO_CODES: Record<string, number> = {
-  INVALUABLE10: 10,
+  HAIRHUB10: 10,
   BEAUTY20: 20,
   WELCOME15: 15,
 };
@@ -230,7 +230,7 @@ const CartDrawer = () => {
                   <Icon name="MapPin" size={18} className="text-primary mt-0.5 shrink-0" />
                   <div>
                     <p className="font-semibold text-sm">Пункт самовывоза</p>
-                    <p className="text-muted-foreground text-sm mt-0.5">Москва, ул. Космонавтов, 42</p>
+                    <p className="text-muted-foreground text-sm mt-0.5">Москва, ул. Мастеров, 12</p>
                     <p className="text-muted-foreground text-xs mt-1">Пн–Пт: 10:00–20:00, Сб: 11:00–18:00</p>
                   </div>
                 </div>

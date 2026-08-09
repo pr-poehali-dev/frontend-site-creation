@@ -6,7 +6,7 @@ interface Msg {
   text: string;
 }
 
-const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/8958dc5f-4146-4058-86b9-541320d2168d.jpeg';
+const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/bda9d1c0-809d-4fdc-a42f-edc41be5225c.png';
 
 const QUICK = [
   'Как подобрать уход?',
@@ -34,7 +34,7 @@ const think = (q: string): string => {
 const ALChat = () => {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { from: 'al', text: 'Привет! Я AL — помощник InValuable 🌸 Помогу подобрать уход, расскажу о курсах и доставке. Чем могу помочь?' },
+    { from: 'al', text: 'Привет! Я AL — помощник HairMasterHub 🌸 Помогу подобрать уход, расскажу о курсах и доставке. Чем могу помочь?' },
   ]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -70,7 +70,7 @@ const ALChat = () => {
           <div className="flex items-center gap-3 px-5 py-4 bg-primary">
             <img src={LOGO} alt="AL" className="w-9 h-9 rounded-full object-contain bg-white p-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-primary-foreground text-sm">AL — помощник InValuable</p>
+              <p className="font-semibold text-primary-foreground text-sm">AL — помощник HairMasterHub</p>
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
                 <span className="text-primary-foreground/70 text-xs">Онлайн</span>
