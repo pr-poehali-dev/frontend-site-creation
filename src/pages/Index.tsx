@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
+import ClubSection from '@/components/ClubSection';
 import ChampionSection from '@/components/ChampionSection';
 import CoopSection from '@/components/CoopSection';
 import DeliverySection from '@/components/DeliverySection';
@@ -282,6 +283,9 @@ const Index = () => {
 
       {/* EDUCATION */}
       <Education />
+
+      {/* CLUB */}
+      <ClubSection />
 
       {/* CHAMPION */}
       <ChampionSection />
