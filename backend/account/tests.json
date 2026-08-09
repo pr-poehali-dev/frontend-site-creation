@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Courses without auth returns 401",
+      "method": "GET",
+      "path": "/?action=courses",
+      "expectedStatus": 401
+    },
+    {
+      "name": "Orders without auth returns 401",
+      "method": "GET",
+      "path": "/?action=orders",
+      "expectedStatus": 401
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
+import { accountApi } from '@/lib/accountApi';
 
 type Step = 'cart' | 'delivery' | 'payment' | 'done';
 
@@ -19,6 +22,7 @@ const PROMO_CODES: Record<string, number> = {
 
 const CartDrawer = () => {
   const { items, open, setOpen, total, setQty, remove, clear } = useCart();
+  const { user } = useAuth();
 
   const [step, setStep] = useState<Step>('cart');
   const [deliveryId, setDeliveryId] = useState('courier');
@@ -304,7 +308,14 @@ const CartDrawer = () => {
 
             <div className="p-5 border-t border-border">
               <button
-                onClick={() => { setStep('done'); clear(); }}
+                onClick={() => {
+                  setStep('done');
+                  if (user) {
+                    const itemsCount = items.reduce((s, i) => s + i.qty, 0);
+                    accountApi.createOrder(itemsCount, grandTotal);
+                  }
+                  clear();
+                }}
                 className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-full hover:opacity-90 transition-opacity"
               >
                 Оплатить {grandTotal.toLocaleString()} ₽
@@ -318,7 +329,7 @@ const CartDrawer = () => {
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
             <div className="relative mb-6">
               <div className="w-24 h-24 rounded-full bg-accent flex items-center justify-center">
-                <Icon name="PackageCheck" size={42} className="text-primary" />
+                <IconAsset name="package" size={52} />
               </div>
               <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
                 <Icon name="Check" size={16} className="text-green-600" />

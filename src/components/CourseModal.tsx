@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Course } from '@/data/courses';
+import { useAuth } from '@/context/AuthContext';
+import { accountApi } from '@/lib/accountApi';
 
 interface Props {
   course: Course | null;
@@ -27,6 +29,7 @@ const months = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'и�
 type BookStep = 'info' | 'calendar' | 'form' | 'done';
 
 const CourseModal = ({ course, onClose }: Props) => {
+  const { user } = useAuth();
   const [tab, setTab] = useState<'desc' | 'program' | 'trainer'>('desc');
   const [bookStep, setBookStep] = useState<BookStep>('info');
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
@@ -263,7 +266,12 @@ const CourseModal = ({ course, onClose }: Props) => {
             )}
             {bookStep === 'form' && (
               <button
-                onClick={() => { if (validate()) setBookStep('done'); }}
+                onClick={() => {
+                  if (validate()) {
+                    setBookStep('done');
+                    if (user) accountApi.enroll(course.id);
+                  }
+                }}
                 className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-full hover:opacity-90 transition-opacity"
               >
                 Оплатить и записаться

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 import { courses, categoryLabels, categoryIcons, Course } from '@/data/courses';
 import CourseModal from '@/components/CourseModal';
 import SpecialistRegModal from '@/components/SpecialistRegModal';
@@ -121,7 +122,7 @@ const Education = () => {
 
         {/* CTA for specialists */}
         <div className="mt-16 bg-gradient-to-br from-primary/8 to-accent rounded-[2rem] p-8 sm:p-12 text-center reveal">
-          <p className="text-4xl mb-4">🎓</p>
+          <IconAsset name="graduationCap" size={56} className="mx-auto mb-4" />
           <h3 className="text-3xl font-display font-semibold mb-3">Стать сертифицированным партнёром</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
             Зарегистрируйтесь как специалист — получите доступ к закрытым материалам и программе чемпионов HairMasterHub

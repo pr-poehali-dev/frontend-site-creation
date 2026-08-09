@@ -12,6 +12,7 @@ import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useAuth } from '@/context/AuthContext';
 import { products } from '@/data/products';
+import IconAsset, { IconAssetName } from '@/components/ui/icon-asset';
 
 const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/bda9d1c0-809d-4fdc-a42f-edc41be5225c.png';
 
@@ -313,14 +314,14 @@ const Index = () => {
 
           {/* Values */}
           <div className="grid lg:grid-cols-3 gap-6 mb-16">
-            {[
-              { icon: 'ShieldCheck', title: 'Надёжность', desc: 'Только сертифицированная профессиональная косметика с прозрачным составом.' },
-              { icon: 'Users', title: 'Сообщество', desc: 'Закрытый клуб экспертов, живое общение и обмен опытом.' },
-              { icon: 'GraduationCap', title: 'Развитие', desc: 'Гибкие форматы обучения — от вводных модулей до продвинутых курсов.' },
-            ].map((c, i) => (
+            {([
+              { icon: 'heart', title: 'Надёжность', desc: 'Только сертифицированная профессиональная косметика с прозрачным составом.' },
+              { icon: 'users', title: 'Сообщество', desc: 'Закрытый клуб экспертов, живое общение и обмен опытом.' },
+              { icon: 'graduationCap', title: 'Развитие', desc: 'Гибкие форматы обучения — от вводных модулей до продвинутых курсов.' },
+            ] as { icon: IconAssetName; title: string; desc: string }[]).map((c, i) => (
               <div key={c.title} className="reveal glass soft-shadow rounded-3xl p-8" data-delay={`${i * 0.1}s`}>
-                <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-5">
-                  <Icon name={c.icon} size={26} className="text-primary-foreground" />
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
+                  <IconAsset name={c.icon} size={38} />
                 </div>
                 <h3 className="text-2xl font-display font-semibold mb-2">{c.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{c.desc}</p>

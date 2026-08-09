@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 
 const CHAMPION_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/e402936b-2a2c-4d52-8cef-32d137e96759.jpg';
 
@@ -99,7 +100,11 @@ const ChampionSection = () => {
                 className="reveal glass soft-shadow rounded-2xl p-5 hover:-translate-y-1 transition-transform"
                 data-delay={`${(i % 3) * 0.07}s`}
               >
-                <div className="text-3xl mb-3">{p.icon}</div>
+                {i === 0 ? (
+                  <IconAsset name="award" size={36} className="mb-3" />
+                ) : (
+                  <div className="text-3xl mb-3">{p.icon}</div>
+                )}
                 <p className="font-semibold text-sm leading-snug">{p.title}</p>
                 <p className="text-muted-foreground text-xs mt-1">{p.desc}</p>
               </div>
@@ -170,7 +175,7 @@ const ChampionSection = () => {
               ) : (
                 <div className="flex flex-col items-center text-center py-8">
                   <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center mb-5">
-                    <Icon name="Trophy" size={36} className="text-primary" />
+                    <IconAsset name="trophy" size={44} />
                   </div>
                   <h4 className="text-2xl font-display font-semibold mb-2">Заявка принята!</h4>
                   <p className="text-muted-foreground text-sm leading-relaxed">

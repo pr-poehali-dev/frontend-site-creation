@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import { useAuth } from '@/context/AuthContext';
+import { accountApi } from '@/lib/accountApi';
 
 const CLUB_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/eea211a9-e9dc-46e4-b5bc-973199fa5bb8.jpg';
 
@@ -74,6 +76,7 @@ const forumTopics = [
 ];
 
 const ClubSection = () => {
+  const { user } = useAuth();
   const [selectedTier, setSelectedTier] = useState<TierId | null>(null);
   const [form, setForm] = useState({ name: '', phone: '', email: '', personal: false });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -302,7 +305,12 @@ const ClubSection = () => {
             <div className="p-5 border-t border-border">
               {!done ? (
                 <button
-                  onClick={() => { if (validate()) setDone(true); }}
+                  onClick={() => {
+                    if (validate()) {
+                      setDone(true);
+                      if (user) accountApi.subscribe(activeTier.id, activeTier.price);
+                    }
+                  }}
                   className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-full hover:opacity-90 transition-opacity"
                 >
                   {activeTier.price === 0 ? 'Присоединиться' : `Оплатить ${activeTier.price.toLocaleString()} ₽`}
