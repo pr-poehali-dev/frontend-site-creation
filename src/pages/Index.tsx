@@ -10,6 +10,7 @@ import DeliverySection from '@/components/DeliverySection';
 import { useReveal } from '@/components/useReveal';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
+import { useAuth } from '@/context/AuthContext';
 import { products } from '@/data/products';
 
 const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/bda9d1c0-809d-4fdc-a42f-edc41be5225c.png';
@@ -38,6 +39,7 @@ const HERO_IMG2 = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9
 const Index = () => {
   useReveal();
   const { add, count, setOpen } = useCart();
+  const { user } = useAuth();
   const { isWished, toggleItem, activeListId, setOpen: setWishOpen, lists } = useWishlist();
   const activeList = lists.find((l) => l.id === activeListId) ?? lists[0];
   const totalWished = lists.reduce((s, l) => s + l.items.length, 0);
@@ -66,7 +68,7 @@ const Index = () => {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <Link to="/account" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors" title="Личный кабинет">
+            <Link to={user ? '/account' : '/login'} className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors" title="Личный кабинет">
               <Icon name="User" size={18} />
             </Link>
             <button onClick={() => setWishOpen(true)} className="relative w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors">

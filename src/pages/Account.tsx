@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Progress } from '@/components/ui/progress';
 import { courses } from '@/data/courses';
 import { useWishlist } from '@/context/WishlistContext';
+import { useAuth } from '@/context/AuthContext';
 
 const LOGO = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/bucket/bda9d1c0-809d-4fdc-a42f-edc41be5225c.png';
 
@@ -18,12 +19,10 @@ const tabs: { id: TabId; label: string; icon: string }[] = [
   { id: 'settings', label: 'Настройки', icon: 'Settings' },
 ];
 
-const user = {
-  name: 'Екатерина Морозова',
-  email: 'ekaterina.morozova@mail.ru',
-  role: 'Стилист-колорист',
-  memberSince: 'март 2024',
-  avatar: '👩‍🦰',
+const membershipLabels: Record<string, string> = {
+  basic: 'Базовый',
+  premium: 'Премиум',
+  elite: 'Элитный',
 };
 
 const myCourses = [
@@ -47,8 +46,17 @@ const statusColor: Record<string, string> = {
 const Account = () => {
   const [tab, setTab] = useState<TabId>('overview');
   const { lists } = useWishlist();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const totalSaved = lists.reduce((s, l) => s + l.items.length, 0);
   const completedCount = myCourses.filter(c => c.status === 'completed').length;
+
+  if (!user) return null;
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -59,9 +67,14 @@ const Account = () => {
             <img src={LOGO} alt="HairMasterHub" className="h-9 w-auto object-contain rounded-full" />
             <span className="hidden sm:block font-display font-semibold text-lg">HairMasterHub</span>
           </Link>
-          <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-            <Icon name="ArrowLeft" size={16} /> На главную
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Icon name="ArrowLeft" size={16} /> На главную
+            </Link>
+            <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-destructive transition-colors">
+              <Icon name="LogOut" size={16} /> Выйти
+            </button>
+          </div>
         </div>
       </header>
 
@@ -70,13 +83,13 @@ const Account = () => {
           {/* Sidebar */}
           <aside>
             <div className="glass soft-shadow rounded-[1.75rem] p-6 mb-5 text-center">
-              <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center text-4xl mx-auto mb-4">
-                {user.avatar}
+              <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center text-3xl font-display font-semibold text-primary mx-auto mb-4">
+                {user.name.charAt(0).toUpperCase()}
               </div>
               <p className="font-display font-semibold text-lg">{user.name}</p>
               <p className="text-muted-foreground text-sm">{user.role}</p>
               <div className="mt-4 inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full">
-                <Icon name="Crown" size={13} /> Премиум клуб
+                <Icon name="Crown" size={13} /> {membershipLabels[user.membershipTier] || 'Базовый'} клуб
               </div>
             </div>
 
@@ -304,7 +317,9 @@ const Account = () => {
                     Сохранить изменения
                   </button>
                 </div>
-                <p className="text-muted-foreground text-sm">В клубе с {user.memberSince}</p>
+                <p className="text-muted-foreground text-sm">
+                  В клубе с {user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' }) : '—'}
+                </p>
               </div>
             )}
           </main>
