@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
 const CLUB_IMG = 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/eea211a9-e9dc-46e4-b5bc-973199fa5bb8.jpg';
@@ -307,9 +308,19 @@ const ClubSection = () => {
                   {activeTier.price === 0 ? 'Присоединиться' : `Оплатить ${activeTier.price.toLocaleString()} ₽`}
                 </button>
               ) : (
-                <button onClick={closeModal} className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-full">
-                  Отлично
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button onClick={closeModal} className="flex-1 bg-secondary text-foreground font-semibold py-4 rounded-full hover:bg-accent transition-colors">
+                    Закрыть
+                  </button>
+                  <Link
+                    to="/account"
+                    onClick={closeModal}
+                    className="flex-1 bg-primary text-primary-foreground font-semibold py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                  >
+                    В личный кабинет
+                    <Icon name="ArrowRight" size={18} />
+                  </Link>
+                </div>
               )}
             </div>
           </div>

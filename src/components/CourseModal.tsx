@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Course } from '@/data/courses';
 
@@ -223,9 +224,19 @@ const CourseModal = ({ course, onClose }: Props) => {
                 </p>
               )}
               <p className="text-sm text-muted-foreground mb-8">Детали будут отправлены на ваш email. До встречи!</p>
-              <button onClick={handleClose} className="bg-primary text-primary-foreground font-semibold px-8 py-3.5 rounded-full">
-                Отлично
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3 w-full">
+                <button onClick={handleClose} className="flex-1 bg-secondary text-foreground font-semibold px-8 py-3.5 rounded-full hover:bg-accent transition-colors">
+                  Закрыть
+                </button>
+                <Link
+                  to="/account"
+                  onClick={handleClose}
+                  className="flex-1 bg-primary text-primary-foreground font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                >
+                  В личный кабинет
+                  <Icon name="ArrowRight" size={18} />
+                </Link>
+              </div>
             </div>
           )}
         </div>
