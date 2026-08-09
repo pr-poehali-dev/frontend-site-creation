@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
@@ -65,6 +66,9 @@ const Index = () => {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <Link to="/account" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors" title="Личный кабинет">
+              <Icon name="User" size={18} />
+            </Link>
             <button onClick={() => setWishOpen(true)} className="relative w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors">
               <Icon name="Heart" size={18} className={totalWished > 0 ? 'text-primary' : ''} />
               {totalWished > 0 && (
@@ -105,7 +109,7 @@ const Index = () => {
           <div>
             <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6 reveal">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm text-muted-foreground">Платформа для профессионалов волос</span>
+              <span className="text-sm text-muted-foreground">Платформа для профессионалов</span>
             </div>
             <h1 className="text-5xl sm:text-7xl font-display font-semibold leading-[1.02] mb-6 reveal" data-delay="0.1s">
               Обучение, клуб и <span className="gradient-text">магазин в одном окне</span>
