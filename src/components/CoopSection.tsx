@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 
 const weekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 const months = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
@@ -148,7 +149,7 @@ const CoopSection = () => {
                 ) : (
                   <div className="flex flex-col items-center text-center py-8">
                     <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center mb-4">
-                      <Icon name="Check" size={30} className="text-primary" />
+                      <IconAsset name="check" size={38} />
                     </div>
                     <h4 className="text-xl font-display font-semibold mb-2">Заявка принята!</h4>
                     <p className="text-muted-foreground text-sm">Наш менеджер свяжется с вами в ближайшее время.</p>
@@ -315,7 +316,7 @@ const CoopSection = () => {
               {consultStep === 'done' && (
                 <div className="flex flex-col items-center text-center py-6">
                   <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center mb-5">
-                    <Icon name="CalendarCheck" size={36} className="text-primary" />
+                    <IconAsset name="calendarCheck" size={44} />
                   </div>
                   <h4 className="text-2xl font-display font-semibold mb-2">Запись подтверждена!</h4>
                   <p className="text-muted-foreground text-sm mb-4">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 import { products, Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 
@@ -134,9 +135,7 @@ const Diagnostic = () => {
           ) : (
             <div className="animate-fade-up">
               <div className="flex items-start gap-4 bg-accent rounded-2xl p-5 mb-8">
-                <div className="w-11 h-11 rounded-full bg-primary flex items-center justify-center shrink-0">
-                  <Icon name="Sparkles" size={20} className="text-primary-foreground" />
-                </div>
+                <IconAsset name="sparkles" size={44} className="shrink-0" />
                 <div>
                   <p className="font-semibold text-accent-foreground mb-1">Рекомендация AI-помощника</p>
                   <p className="text-accent-foreground/80 text-sm leading-relaxed">{mainAdvice}</p>

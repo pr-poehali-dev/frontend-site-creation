@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
-import IconAsset from '@/components/ui/icon-asset';
+import IconAsset, { IconAssetName } from '@/components/ui/icon-asset';
 import { Progress } from '@/components/ui/progress';
 import { courses } from '@/data/courses';
 import { useWishlist } from '@/context/WishlistContext';
@@ -315,14 +315,14 @@ const Account = () => {
                     <div>
                       <h3 className="font-display font-semibold text-xl mb-4">Ваши привилегии</h3>
                       <div className="grid sm:grid-cols-2 gap-3">
-                        {[
-                          { icon: 'Video', text: 'LIVE-мастер-классы 2 раза в месяц' },
-                          { icon: 'Percent', text: 'Скидка 15% в магазине' },
-                          { icon: 'PlayCircle', text: 'Записи всех прошедших эфиров' },
-                          { icon: 'Headphones', text: 'Приоритетная поддержка' },
-                        ].map(p => (
+                        {([
+                          { icon: 'live', text: 'LIVE-мастер-классы 2 раза в месяц' },
+                          { icon: 'percent', text: 'Скидка 15% в магазине' },
+                          { icon: 'playCircle', text: 'Записи всех прошедших эфиров' },
+                          { icon: 'headphones', text: 'Приоритетная поддержка' },
+                        ] as { icon: IconAssetName; text: string }[]).map(p => (
                           <div key={p.text} className="flex items-center gap-3 bg-secondary/50 rounded-xl p-4">
-                            <Icon name={p.icon} size={18} className="text-primary shrink-0" />
+                            <IconAsset name={p.icon} size={28} className="shrink-0" />
                             <span className="text-sm">{p.text}</span>
                           </div>
                         ))}

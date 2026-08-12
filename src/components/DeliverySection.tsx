@@ -1,4 +1,4 @@
-import Icon from '@/components/ui/icon';
+import IconAsset, { IconAssetName } from '@/components/ui/icon-asset';
 
 const zones = [
   { city: 'Москва и МО', courier: '1–2 дня', post: '2–3 дня', cdek: '1–2 дня', courier_price: 390, free_from: 3000 },
@@ -7,11 +7,11 @@ const zones = [
   { city: 'Остальные города', courier: '5–7 дней', post: '7–14 дней', cdek: '3–6 дней', courier_price: 690, free_from: 6000 },
 ];
 
-const features = [
-  { icon: 'PackageCheck', title: 'Безопасная упаковка', desc: 'Продукты упакованы в фирменные коробки с защитной прослойкой' },
-  { icon: 'MapPin', title: 'Отслеживание', desc: 'Трек-номер приходит на email сразу после отправки заказа' },
-  { icon: 'RotateCcw', title: 'Возврат 30 дней', desc: 'Вернём деньги, если товар не подошёл — без лишних вопросов' },
-  { icon: 'Gift', title: 'Подарочная упаковка', desc: 'Добавьте открытку и фирменную ленту — бесплатно при заказе от 2000 ₽' },
+const features: { icon: IconAssetName; title: string; desc: string }[] = [
+  { icon: 'package', title: 'Безопасная упаковка', desc: 'Продукты упакованы в фирменные коробки с защитной прослойкой' },
+  { icon: 'mapPin', title: 'Отслеживание', desc: 'Трек-номер приходит на email сразу после отправки заказа' },
+  { icon: 'refresh', title: 'Возврат 30 дней', desc: 'Вернём деньги, если товар не подошёл — без лишних вопросов' },
+  { icon: 'gift', title: 'Подарочная упаковка', desc: 'Добавьте открытку и фирменную ленту — бесплатно при заказе от 2000 ₽' },
 ];
 
 const DeliverySection = () => (
@@ -76,9 +76,7 @@ const DeliverySection = () => (
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {features.map((f, i) => (
           <div key={f.title} className="reveal flex items-start gap-4 p-5 bg-secondary/40 rounded-2xl" data-delay={`${i * 0.07}s`}>
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shrink-0">
-              <Icon name={f.icon} size={18} className="text-primary-foreground" />
-            </div>
+            <IconAsset name={f.icon} size={36} className="shrink-0" />
             <div>
               <p className="font-semibold text-sm">{f.title}</p>
               <p className="text-muted-foreground text-xs mt-1 leading-relaxed">{f.desc}</p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import IconAsset from '@/components/ui/icon-asset';
 
 interface Props {
   open: boolean;
@@ -100,7 +101,7 @@ const SpecialistRegModal = ({ open, onClose, categoryLabel = 'специалис
           ) : (
             <div className="flex flex-col items-center text-center py-8">
               <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center mb-5">
-                <Icon name="UserCheck" size={36} className="text-primary" />
+                <IconAsset name="userCheck" size={44} />
               </div>
               <h4 className="text-2xl font-display font-semibold mb-2">Заявка отправлена!</h4>
               <p className="text-muted-foreground text-sm leading-relaxed">
