@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
-import IconAsset from '@/components/ui/icon-asset';
-import { courses, categoryLabels, categoryIcons, Course } from '@/data/courses';
+import IconAsset, { IconAssetName } from '@/components/ui/icon-asset';
+import { courses, categoryLabels, Course } from '@/data/courses';
 import CourseModal from '@/components/CourseModal';
 import SpecialistRegModal from '@/components/SpecialistRegModal';
 
@@ -11,6 +11,13 @@ const levelColors: Record<string, string> = {
   'Вводный': 'bg-green-50 text-green-700',
   'Базовый': 'bg-blue-50 text-blue-700',
   'Продвинутый': 'bg-primary/10 text-primary',
+};
+
+const categoryIconAssets: Record<string, IconAssetName> = {
+  hair: 'hairStrand',
+  trichology: 'microscope',
+  brows: 'lashBrush',
+  cosmetology: 'flower',
 };
 
 const Education = () => {
@@ -53,7 +60,7 @@ const Education = () => {
               onClick={() => setActiveCategory(key)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${activeCategory === key ? 'bg-primary text-primary-foreground' : 'bg-secondary hover:bg-accent'}`}
             >
-              <span>{categoryIcons[key]}</span>
+              <IconAsset name={categoryIconAssets[key]} size={18} />
               <span>{label}</span>
             </button>
           ))}
@@ -63,7 +70,7 @@ const Education = () => {
         {activeCategory !== 'all' && (
           <div className="glass soft-shadow rounded-2xl p-5 mb-8 flex items-center justify-between gap-4 reveal">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{categoryIcons[activeCategory]}</span>
+              <IconAsset name={categoryIconAssets[activeCategory]} size={40} />
               <div>
                 <p className="font-semibold">Раздел для специалистов</p>
                 <p className="text-sm text-muted-foreground">Зарегистрируйтесь для полного доступа к материалам</p>
@@ -96,7 +103,7 @@ const Education = () => {
                     </span>
                     <p className="text-xs text-muted-foreground mt-2">{categoryLabels[course.category]}</p>
                   </div>
-                  <span className="text-3xl">{categoryIcons[course.category]}</span>
+                  <IconAsset name={categoryIconAssets[course.category]} size={36} />
                 </div>
                 <h3 className="font-display font-semibold text-xl leading-snug mb-2 group-hover:text-primary transition-colors">
                   {course.title}
@@ -134,7 +141,7 @@ const Education = () => {
                 onClick={() => openReg(label)}
                 className="flex items-center gap-2 glass hover:bg-white transition-colors font-medium px-5 py-2.5 rounded-full text-sm"
               >
-                <span>{categoryIcons[key]}</span>
+                <IconAsset name={categoryIconAssets[key]} size={18} />
                 {label}
               </button>
             ))}

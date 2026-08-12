@@ -22,6 +22,11 @@ export const iconAssets = {
   mapPin: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/c5513698-eebd-4f37-956f-607070375763.jpg',
   truck: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/7665c7a4-f0cd-4936-9f0e-31ad72f3b0f1.jpg',
   refresh: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/9e7a4c5c-72b7-4c35-b6f0-9a647715fff9.jpg',
+  hairStrand: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/272abb12-9aa9-468e-90e0-ee1c1f2958b0.jpg',
+  microscope: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/ee9f2171-acd6-4838-a28b-523193b4ea74.jpg',
+  lashBrush: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/fce7ad52-3fa5-4a56-a436-3959af6e57b3.jpg',
+  flower: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/6f3b6f30-0b37-411b-9e95-4ef6ba088864.jpg',
+  quote: 'https://cdn.poehali.dev/projects/5c134f01-95d0-4127-889a-6ff9b3e809e4/files/1367b526-90e3-4658-adbd-9147fb915f9e.jpg',
 } as const;
 
 export type IconAssetName = keyof typeof iconAssets;

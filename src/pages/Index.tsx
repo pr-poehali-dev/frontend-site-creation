@@ -5,6 +5,7 @@ import Diagnostic from '@/components/Diagnostic';
 import Education from '@/components/Education';
 import ClubSection from '@/components/ClubSection';
 import ChampionSection from '@/components/ChampionSection';
+import Reviews from '@/components/Reviews';
 import CoopSection from '@/components/CoopSection';
 import DeliverySection from '@/components/DeliverySection';
 import { useReveal } from '@/components/useReveal';
@@ -296,6 +297,9 @@ const Index = () => {
 
       {/* CHAMPION */}
       <ChampionSection />
+
+      {/* REVIEWS */}
+      <Reviews />
 
       {/* COOP + DOCS + CONSULT */}
       <CoopSection />
